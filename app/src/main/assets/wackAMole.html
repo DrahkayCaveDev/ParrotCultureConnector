@@ -1,0 +1,201 @@
+
+
+<!--
+		Name: <Put name here>
+		Date: <Put date here>
+		Class: CSCI2447, Javascript Fundamentals
+		Project X
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Whack-A-Mole (CSCI2447)</title>
+
+    <!-- CSS styles: This is for me to worry about; not you. -->
+	<link href="assets/css/game.css" rel="stylesheet" />
+    <script src="assets/js/jquery-1.6.2.min.js"></script>
+	<script>
+
+		var time = 0;
+		var score = 0;
+		var active = false;
+		var t;
+		var m;
+		var count = 0;
+		var count2 = 0;
+		var random = 0;
+		var random2 = 0;
+		var x = 0;
+		var y = 0;
+		var hscore = 0;
+
+		$(document).ready( function() {
+			$('#timer').toggle();
+
+
+			document.getElementById("start_button").addEventListener("click", function(){
+				if(!active){
+					Beaner();
+
+				}else{
+					alert("You're wasting your time");
+				}
+			});
+		});
+
+		function Beaner(){
+			active = true;
+			score = 0;
+			$("span#score").text("Score: " +score + "pts, Highscore: " + hscore + "pts");
+			time = 30;
+			$("div#timer").text(time + " seconds left");
+			$("div#timer").css(
+			{"background" : "radial-gradient(rgb(134, 161, 204), rgb(20, 52, 102)) fixed"
+			, "-webkit-background-clip": "text"});
+			cookBeans();
+			timer();
+			color();
+		};
+
+		function color(){
+			$('#gamespace').css({"background":"radial-gradient(rgb(66, 80, 244), honeydew) fixed"});
+			$('h1').css({"color":"RebeccaPurple"});
+			$('h1').text("Whack-A- ̶M̶o̶l̶e̶BEAN!");
+			$('p').text('After clicking "start", you will have 30 seconds to click as many beans as you can. The beans appear randomly so be ready!');
+			$('title').text("Whack-A-BEAN");
+		};
+
+		function scoreIncrement(){
+			$('img#mole' + count2).remove();
+			score++;
+			if (score > hscore){
+				hscore = score;
+			}
+			if (score == 1){
+				$("span#score").text("Score: " + score + "pt, Highscore: " + hscore + "pts");
+			}else{
+				$("span#score").text("Score: " + score + "pts, Highscore: " + hscore + "pts");
+			}
+		};
+
+		function yRand(){
+			var y = Math.floor(Math.random()*250);
+			return y;
+		};
+
+		function xRand(){
+			var x = Math.floor(Math.random()*540);
+			return x;
+		};
+
+		function timer(){
+
+			if(time > 1){
+
+				time = time - 1;
+
+				t = setTimeout("timer()", 1000);
+
+				if (time == 1){
+					$("div#timer").text(time + " second left");
+				}
+				else{
+					$("div#timer").text(time + " seconds left");
+				}
+			}
+			else{
+				$("div#timer").text("Time's UP");
+				$("div#timer").css(
+				{"background":"radial-gradient(rgb(114, 44, 26), rgb(244, 75, 66)) fixed"
+				, "-webkit-background-clip": "text"});
+				time = 0;
+				s = setTimeout("reset();", 2000);
+				alert("Your score: " + score);
+			}
+
+		};
+
+		function reset(){
+			active = false;
+			$('img').remove();
+			$('#gamespace').css({"background":"radial-gradient(rgb(99, 88, 76), rgb(45, 40, 34)) fixed"});
+			$('h1').css({"color":"black"});
+			$('p').text('After clicking "start", you will have 30 seconds to click as many moles as you can. The moles appear randomly so be ready!');
+			$('h1').text("Whack-A-Mole!");
+			$('title').text("Whack-A-Mole");
+			count = 0;
+			count2 = 0;
+			score = 0;
+			$("span#score").text("Score: " + score + "pts, Highscore: " + hscore + "pts");
+			clearTimeOut();
+		};
+
+		function cookBeans(){
+
+			y = Math.floor(Math.random()*($('#gamespace').height()-100));
+			x = Math.floor(Math.random()*($('#gamespace').width()-50));
+			$('#gamespace').append('<img onclick="scoreIncrement();" src="assets/img/mole.png" style="top:'+y+'px;left:'+x+'px;" id="mole" />');
+			$('img#mole').attr('id', 'mole' + count);
+			if(time > 0){
+				random = (Math.floor(Math.random()*2000));
+				random2 = (Math.floor(Math.random()*2000));
+				s = setTimeout("cookBeans()", random);
+				m = setTimeout("eatBeans()", random2);
+				count++;
+			}
+		};
+
+		function eatBeans(){
+			$('img#mole' + count2).remove();
+			count2++;
+		};
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "75%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+	</script>
+  </head>
+  <body>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Parrot Collection</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Parrot Store</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Parrot Game</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Read Culture</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Post Culture</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Tell Culture</a>
+      <a href="wackAMole.html"><img src="assets/images/sadparrot.gif">Wack-a-Mole</a>
+      <a href="snake.html"><img src="assets/images/sadparrot.gif">Snake</a>
+      <a href="index.html"><img src="assets/images/sadparrot.gif">Donate to Sirocco</a>
+    </div>
+
+  <span style="font-size:30px;cursor:pointer;z-index:1;" onclick="openNav()" onmouseout="closeNav()"> &#9776;</span>
+
+	<div id="content">
+
+		<h1>Whack-A-Mole</h1>
+
+		<p>After clicking "start", you will have 30 seconds to click
+		as many moles as you can. The moles appear randomly so be ready! </p>
+
+		<div id="controls">
+			<span id="score">Score: 0 pts, Highscore: 0pts</span>
+			<button type="button" id="start_button">Start!</button>
+		</div>
+
+		<div id="timer">30 seconds left</div>
+
+		<div id="gamespace">
+
+		</div>
+
+	</div>
+  </body>
+</html>

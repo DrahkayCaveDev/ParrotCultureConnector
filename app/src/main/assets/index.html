@@ -1,0 +1,62 @@
+<!Doctype html>
+<html>
+
+<head>
+  <link href="assets/style/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script>
+
+  $(document).ready(function(){
+  });
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "75%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+function resize() {
+    var w = window.outerWidth;
+    var h = window.outerHeight;
+    var txt = "Window size: width=" + w + ", height=" + h;
+    alert(txt);
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="sad">
+  <img src="assets/images/sadparrot.gif">
+  <h1>Sirocco doesn't see any friends</h1>
+  <h1>Sirocco is sad</h1>
+</div>
+
+  <div id="mySidenav" class="sidenav">
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Parrot Collection</p>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Parrot Store</p>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Parrot Game</p>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Read Culture</p>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Post Culture</p>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Tell Culture</p>
+    <a href="wackAMole.html"><img src="assets/images/sadparrot.gif">Wack-a-Mole</a>
+    <a href="snake.html"><img src="assets/images/sadparrot.gif">Snake</a>
+    <p href="index.html"><img src="assets/images/sadparrot.gif">Donate to Sirocco</p>
+  </div>
+
+  <div id="title">
+  	<h1>Culture Connector</h1>
+  	<h1 id = "score">Parrot Points: 0</h1>
+  	<span style="font-size:30px;cursor:pointer;z-index:1;" onclick="openNav()" onmouseout="closeNav()"> &#9776;</span>
+  </div>
+
+
+</body>
+
+</html>
